@@ -1,14 +1,14 @@
-fetch('http://localhost:3001/meals')
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error('Error:', error));
+import MealItem from "./MealItem.js";
 
-const Meals = () => {
+const Meals = async () => {
+    const meals = fetch('http://localhost:3001/meals')
+    meals = meals.json()
+    console.log(meals)
     return (
         <ul id="meals">
-            { 
-                // list of meals
-            }
+            {meals.map((item) => {
+                return <MealItem {...item }/>;
+            })}
         </ul>
     )
 }

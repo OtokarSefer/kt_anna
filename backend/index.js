@@ -19,7 +19,8 @@ app.use((req, res, next) => {
 app.get("/meals", async (req, res) => {
   const mealsData = await fs.readFile('./data/meals.json', 'utf-8');
   const meals = JSON.parse(mealsData);
-  res.json(meals); 
+  res.json(meals);
+  res.send(meals)
 });
 
 app.use((req, res) => {

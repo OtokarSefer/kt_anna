@@ -14,21 +14,25 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Methods", "GET, POST");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   next();
+  console.log("use 1")
+  return
 });
 
 app.get("/meals", async (req, res) => {
   const mealsData = await fs.readFile('./data/meals.json', 'utf-8');
   const meals = JSON.parse(mealsData);
   res.json(meals);
-  res.send(meals)
+  console.log("get")
 });
 
 app.use((req, res) => {
   if (req.method === "OPTIONS") {
     return res.sendStatus(200);
   }
-
-  res.status(404).json({ message: "Not found" });
+  else {
+    res.status(404).json({ message: "Not found" });
+  }
+  console.log("use 2")
 });
 
 app.listen(3001);

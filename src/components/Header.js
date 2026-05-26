@@ -1,10 +1,11 @@
-import { useContext } from "react";
-import logo from "../assets/logo.jpg";
-import Button from "./UI/Button";
-import { CartContext } from "../store/CartContext";
+import { useContext } from "react"
+import logo from "../assets/logo.jpg"
+import Button from "./UI/Button"
+import { CartContext } from "../store/CartContext"
 
-const Header = () => {
-    const { cart } = useContext(CartContext);
+const Header = ({ onOpenCart }) => {
+    const { cart } = useContext(CartContext)
+    console.log(useContext(CartContext));
     const totalItems = cart.reduce(
         (total, item) => {
             return total + item.quantity
@@ -18,10 +19,10 @@ const Header = () => {
                 <h1>React Food Order App</h1>
             </div>
             <nav>
-                <Button textOnly={true} text={`Cart (${totalItems})`}/>
+                <Button textOnly={true} onClick={onOpenCart} text={`Cart (${totalItems})`}/>
             </nav>
         </header>
-    );
-};
+    )
+}
 
-export default Header;
+export default Header

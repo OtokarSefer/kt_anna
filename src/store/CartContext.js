@@ -23,22 +23,17 @@ const cartReducer = (state, action) => {
     } return state
 }
 const CartProvider = ({ children }) => {
-    const [cart, dispatchCartAction] = useReducer(cartReducer, [])
+    const [cart, dispatch] = useReducer(cartReducer, [])
 
     const addItem = (item) => {
-        dispatchCartAction({
+        dispatch({
             type: "ADD_ITEM",
             item: item,
         })
         console.log(cart)
     } 
     return (
-        <CartContext.Provider
-            value={{
-                cart,
-                addItem,
-            }}
-        >
+        <CartContext.Provider value={{ cart, addItem, }}>
             {children}
         </CartContext.Provider>
     )
